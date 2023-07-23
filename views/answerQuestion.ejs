@@ -1,0 +1,39 @@
+<%- include('partials/header.ejs') %>
+
+<body>
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h3 class="text-center"><%= question.title %></h3>
+                <h4 class="text-center"><%= question.description %></h4>
+            </div>
+
+            <div class="card-body">
+                <form method="POST" action="/save-response">
+                    <input type="hidden" name="inputIdQuestion" id="inputIdQuestion" value="<%= question.id %>">
+
+                    <label for="inputResponse" class="mt-3">Answer The Question:</label>
+                    <textarea class="form-control" id="inputResponse" name="inputResponse" cols="30" rows="10" required></textarea>
+
+                    <button class="btn btn-primary mt-3">To respond</button>
+                </form>
+            </div>
+        </div>
+
+        <hr class="mt-5 mb-5">
+
+        <h3 class="text-center">Responses</h3>
+
+        <% responses.forEach(response => { %>
+            <div class="card mt-4 mb-4">
+                <div class="card-body">
+                    <p class="text-center"><%= response.body %></p>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+
+<%- include('partials/footer.ejs') %>
